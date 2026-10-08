@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phiếu Học Tập: Sinh trưởng, phát dục và khả năng sản xuất</title>
+    <style>
+        :root {
+            --primary: #5e35b1;
+            --primary-light: #ede7f6;
+            --success: #4caf50;
+            --danger: #f44336;
+            --text-main: #333;
+            --bg-body: #f4f6f8;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #5e35b1, #7e57c2);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 { margin: 0 0 10px 0; font-size: 24px; }
+        .student-info {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .student-info input {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+        .section {
+            padding: 20px;
+            border-bottom: 2px dashed var(--primary-light);
+        }
+        .section-title {
+            color: var(--primary);
+            border-left: 5px solid var(--primary);
+            padding-left: 10px;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        /* Quiz Styles */
+        .question { margin-bottom: 15px; }
+        .options label {
+            display: block;
+            background: var(--primary-light);
+            margin: 5px 0;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .options label:active { background: #d1c4e9; }
+        .options input[type="radio"] { margin-right: 10px; }
+        
+        /* True/False Styles */
+        .tf-table { width: 100%; border-collapse: collapse; }
+        .tf-table th, .tf-table td {
+            border: 1px solid #ddd; padding: 10px; text-align: center;
+        }
+        .tf-table td:first-child { text-align: left; }
+        
+        /* Fill-in-blanks */
+        .fill-blank input {
+            border: 1px solid var(--primary);
+            border-radius: 4px;
+            padding: 5px;
+            width: 120px;
+            text-align: center;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        /* Matching Styles */
+        .matching-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .match-column { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+        .match-item {
+            background: var(--primary-light);
+            border: 2px solid transparent;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        .match-item.selected {
+            border-color: var(--primary);
+            transform: scale(1.02);
+            box-shadow: 0 0 8px rgba(94, 53, 177, 0.4);
+        }
+        .match-item.matched {
+            pointer-events: none;
+            color: #000;
+            font-weight: bold;
+        }
+
+        /* Tap to Move (Kéo Thả) */
+        .drag-objects {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            min-height: 50px;
+            padding: 10px;
+            background: #fdfdfd;
+            border-radius: 8px;
+            border: 1px dashed #ccc;
+        }
+        .drag-item {
+            background: #fff;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            user-select: none;
+        }
+        .drag-item.selected {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        .drop-zones { display: flex; flex-direction: column; gap: 10px; }
+        .drop-zone {
+            border:
